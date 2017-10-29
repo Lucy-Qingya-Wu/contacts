@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-//import { Route } from 'react-router-dom'
-//import * as ContactsAPI from './utils/ContactsAPI'
+// import { Route } from 'react-router-dom'
+// import * as ContactsAPI from './utils/ContactsAPI'
 import ListContacts from './ListContacts'
 
     
@@ -34,10 +34,16 @@ class App extends Component {
   }
 
 
+  removeContact = (contact) => {
+    this.setState((state) => ({
+      contacts: state.contacts.filter((c) => c.id !== contact.id)
+    }))
+  }
+
   render() {
     return (
       <div>
-        <ListContacts contacts={this.state.contacts}/>
+        <ListContacts onDeleteContact={this.removeContact} contacts={this.state.contacts}/>
       </div>
     );
   }
